@@ -6,12 +6,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Edit // Added import for the new icon
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -31,7 +29,7 @@ fun CreateTaskScreen(
 ) {
     var taskText by remember { mutableStateOf("") }
 
-    // Gradient for AppBar & Button
+    // Gradient colors
     val topBarGradient = Brush.horizontalGradient(
         colors = listOf(Color(0xFF00BCD4), Color(0xFF4CAF50))
     )
@@ -83,7 +81,16 @@ fun CreateTaskScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                // TextField Card
+                // --- Icon Above TextField ---
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Task Icon",
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier
+                        .size(150.dp)
+                        .padding(bottom = 12.dp)
+                )
+
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -95,13 +102,6 @@ fun CreateTaskScreen(
                         value = taskText,
                         onValueChange = { taskText = it },
                         label = { Text("Task Description") },
-                        // --- CHANGE HERE: Added a leading icon ---
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Edit,
-                                contentDescription = "Task Icon"
-                            )
-                        },
                         textStyle = LocalTextStyle.current.copy(fontSize = 16.sp),
                         modifier = Modifier
                             .fillMaxWidth()
