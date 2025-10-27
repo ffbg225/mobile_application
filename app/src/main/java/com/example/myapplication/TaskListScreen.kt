@@ -104,7 +104,6 @@ fun TaskListScreen(
     }
 }
 
-// 🌈 Gradient Floating Action Button
 @Composable
 fun GradientFAB(
     gradient: Brush,
@@ -137,7 +136,7 @@ fun GradientFAB(
     }
 }
 
-// 🖼️ Empty State (Clear Image)
+
 @Composable
 fun EmptyState(innerPadding: PaddingValues) {
     Column(
@@ -148,7 +147,7 @@ fun EmptyState(innerPadding: PaddingValues) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Clear image, no blur
+
         Image(
             painter = painterResource(id = R.drawable.task),
             contentDescription = "No tasks",
@@ -178,7 +177,7 @@ fun EmptyState(innerPadding: PaddingValues) {
     }
 }
 
-// 🗂️ Task Card
+
 @Composable
 fun TaskListItem(
     taskText: String,

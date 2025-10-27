@@ -1,3 +1,4 @@
+
 package com.example.myapplication
 
 import android.os.Bundle
@@ -24,7 +25,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Main composable that sets up the app structure
                     FieldResearchApp()
                 }
             }
@@ -34,45 +34,33 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun FieldResearchApp() {
-    // This is the single source of truth for the list of tasks
     val tasks = remember { mutableStateListOf<String>() }
-
-    // Set up the NavController for navigation between screens
     val navController = rememberNavController()
 
-    // NavHost defines the navigation graph
     NavHost(navController = navController, startDestination = "taskList") {
-        // Route for the TaskListScreen
-        // Route for the TaskListScreen
         composable("taskList") {
             TaskListScreen(
                 tasks = tasks,
                 onNavigateToCreateTask = {
-                    // Navigate to the create task screen when the FAB is clicked
                     navController.navigate("createTask")
                 },
                 onDeleteTask = { taskToDelete ->
-                    // Remove the specified task from the shared list
                     tasks.remove(taskToDelete)
                 }
             )
         }
 
-
-        // Route for the CreateTaskScreen
         composable("createTask") {
             CreateTaskScreen(
                 onSaveTask = { newTask ->
-                    // Add the new task to the shared list
                     tasks.add(newTask)
-                    // Navigate back to the task list
                     navController.popBackStack()
                 },
                 onNavigateBack = {
-                    // Navigate back when the back arrow is clicked
                     navController.popBackStack()
                 }
             )
         }
     }
 }
+
